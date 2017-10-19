@@ -20,9 +20,9 @@ public class Star : Shape
 		this.height = height;
 	}
 
-	public override void Draw (Graphics Canvas)
+	public override void Draw (GeneralGraphics Canvas)
 	{
-		Pen pen = new Pen (Color.Black);
+        Color color = Color.Black;
 
 		int numPoints = 5;
 		Point[] pts = new Point[numPoints];
@@ -44,7 +44,7 @@ public class Star : Shape
 
 		for (i = 0; i < numPoints; i++) 
 		{
-			Canvas.DrawLine(pen,pts[i].X,
+			Canvas.DrawLine(color, pts[i].X,
                                 pts[i].Y,
                                 pts[(i+1) % numPoints].X,
                                 pts[(i+1) % numPoints].Y);

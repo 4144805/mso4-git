@@ -21,13 +21,13 @@ class Rectangle : Shape
 		this.height = height;
     }
     
-	public override void Draw(Graphics Canvas)
+	public override void Draw(GeneralGraphics Canvas)
     {
-		Pen pen = new Pen(Color.Black);
-		Canvas.DrawLine(pen,x,y,x + width,y);
-		Canvas.DrawLine(pen,x+width,y,x+width,y+height);
-		Canvas.DrawLine(pen,x+width,y+height,x,y+height);
-		Canvas.DrawLine(pen,x,y+height,x,y);
+        Color color = Color.Black;
+		Canvas.DrawLine(color,x,y,x + width,y);
+		Canvas.DrawLine(color, x+width,y,x+width,y+height);
+		Canvas.DrawLine(color, x+width,y+height,x,y+height);
+		Canvas.DrawLine(color, x,y+height,x,y);
     }
 }
 

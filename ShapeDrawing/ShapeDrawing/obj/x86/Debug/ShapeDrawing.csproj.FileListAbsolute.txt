@@ -1,0 +1,7 @@
+D:\School\Modelleren en Systeemontwikkeling\mso4\mso4-git\ShapeDrawing\ShapeDrawing\bin\Debug\ShapeDrawing.exe
+D:\School\Modelleren en Systeemontwikkeling\mso4\mso4-git\ShapeDrawing\ShapeDrawing\bin\Debug\ShapeDrawing.pdb
+D:\School\Modelleren en Systeemontwikkeling\mso4\mso4-git\ShapeDrawing\ShapeDrawing\obj\x86\Debug\ShapeDrawing.csprojResolveAssemblyReference.cache
+D:\School\Modelleren en Systeemontwikkeling\mso4\mso4-git\ShapeDrawing\ShapeDrawing\obj\x86\Debug\ShapeDrawing.Properties.Resources.resources
+D:\School\Modelleren en Systeemontwikkeling\mso4\mso4-git\ShapeDrawing\ShapeDrawing\obj\x86\Debug\ShapeDrawing.csproj.GenerateResource.Cache
+D:\School\Modelleren en Systeemontwikkeling\mso4\mso4-git\ShapeDrawing\ShapeDrawing\obj\x86\Debug\ShapeDrawing.exe
+D:\School\Modelleren en Systeemontwikkeling\mso4\mso4-git\ShapeDrawing\ShapeDrawing\obj\x86\Debug\ShapeDrawing.pdb

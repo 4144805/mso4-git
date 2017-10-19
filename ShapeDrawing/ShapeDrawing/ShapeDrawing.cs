@@ -32,7 +32,7 @@ public class ShapeDrawingForm : Form
         shapes = new List<Shape>();
 		
 		// Listen to Paint event to draw shapes
-		this.Paint += new PaintEventHandler(this.OnPaint); 
+        this.Paint += new PaintEventHandler(this.OnPaint); 
 	}
 
     // What to do when the user closes the program
@@ -82,7 +82,11 @@ public class ShapeDrawingForm : Form
     private void OnPaint(object sender, PaintEventArgs e)
 	{
 		// Draw all the shapes
-		foreach(Shape shape in shapes)
-			shape.Draw(e.Graphics);
+        if (true)//hier moet komen te staan: if (methode == formgraphics)
+        {
+            FormGraphics graphics = new FormGraphics(e.Graphics);
+            foreach (Shape shape in shapes)
+                shape.Draw(graphics);
+        }
 	}
 }
