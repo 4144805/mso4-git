@@ -12,19 +12,18 @@ public class Star : Shape
 	private int width;
 	private int height;
 
-	public Star (int x, int y, int width, int height)
+	public Star (int x, int y, int width, int height, Color color)
 	{
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-	}
+        this.color = color;
+    }
 
 	public override void Draw (GeneralGraphics Canvas)
 	{
-        Color color = Color.Black;
-
-		int numPoints = 5;
+        int numPoints = 5;
 		Point[] pts = new Point[numPoints];
 		double rx = width / 2;
 		double ry = height / 2;

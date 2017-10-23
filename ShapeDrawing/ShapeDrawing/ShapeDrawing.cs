@@ -71,32 +71,19 @@ public class ShapeDrawingForm : Form
                 // Insert code here that generates the string of LaTeX
                 //   commands to draw the shapes
 
-                if (true) //Hier moet komen: if .svg
+                SVG graphics = new SVG();
+                foreach (Shape shape in shapes)
+                    shape.Draw(graphics);
+                graphics.Export();
+
+                //System.IO.File.WriteAllLines(saveFileDialog.FileName, graphics.Document);
+
+                using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    SVG graphics = new SVG();
-                    foreach (Shape shape in shapes)
-                        shape.Draw(graphics);
-                    graphics.Export();
-
-                    //System.IO.File.WriteAllLines(saveFileDialog.FileName, graphics.Document);
-
-                    using (StreamWriter writer = new StreamWriter(stream))
+                    // Write strings to the file here using:
+                    foreach (string regel in graphics.Document)
                     {
-                        // Write strings to the file here using:
-                        //   writer.WriteLine("Hello World!");
-                        foreach (string regel in graphics.Document)
-                        {
-                            writer.WriteLine(regel);
-                        }
-                    }
-                }
-
-                else
-                {
-                    using (StreamWriter writer = new StreamWriter(stream))
-                    {
-                        // Write strings to the file here using:
-                        //   writer.WriteLine("Hello World!");
+                        writer.WriteLine(regel);
                     }
                 }
             }

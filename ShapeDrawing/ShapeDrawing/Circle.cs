@@ -11,16 +11,16 @@ class Circle : Shape
 	private int y;
 	private int size;
 
-    public Circle(int x, int y, int size)
+    public Circle(int x, int y, int size, Color color)
     {
 		this.x = x;
 		this.y = y;
 		this.size = size;
+        this.color = color;
     }
 
     public override void Draw(GeneralGraphics Canvas)
     {
-        Color color = Color.Black;
         Canvas.DrawEllipse(color, this.x, this.y, this.size, this.size);
     }
 
