@@ -7,33 +7,33 @@ using System.Collections.Generic;
 
 public class ShapeDrawingForm : Form
 {
-	private List<Shape> shapes;
+    private List<Shape> shapes;
 
-	public ShapeDrawingForm()
-	{
+    public ShapeDrawingForm()
+    {
         MenuStrip menuStrip;
         menuStrip = new MenuStrip();
 
         ToolStripDropDownItem menu;
         menu = new ToolStripMenuItem("File");
-		menu.DropDownItems.Add("Open...", null, this.openFileHandler);
-		menu.DropDownItems.Add("Export...", null, this.exportHandler);
+        menu.DropDownItems.Add("Open...", null, this.openFileHandler);
+        menu.DropDownItems.Add("Export...", null, this.exportHandler);
         menu.DropDownItems.Add("Exit", null, this.closeHandler);
         menuStrip.Items.Add(menu);
 
         this.Controls.Add(menuStrip);
-		// Some basic settings
-		Text = "Shape Drawing and Converter";
-		Size = new Size(400, 400);
-		CenterToScreen();
-		SetStyle(ControlStyles.ResizeRedraw, true);
-		
-		// Initialize shapes
+        // Some basic settings
+        Text = "Shape Drawing and Converter";
+        Size = new Size(400, 400);
+        CenterToScreen();
+        SetStyle(ControlStyles.ResizeRedraw, true);
+
+        // Initialize shapes
         shapes = new List<Shape>();
-		
-		// Listen to Paint event to draw shapes
-        this.Paint += new PaintEventHandler(this.OnPaint); 
-	}
+
+        // Listen to Paint event to draw shapes
+        this.Paint += new PaintEventHandler(this.OnPaint);
+    }
 
     // What to do when the user closes the program
     private void closeHandler(object sender, EventArgs e)
@@ -56,37 +56,58 @@ public class ShapeDrawingForm : Form
     }
 
     // What to do when the user wants to export a TeX file
-	private void exportHandler (object sender, EventArgs e)
-	{
-		Stream stream;
-		SaveFileDialog saveFileDialog = new SaveFileDialog();
+    private void exportHandler(object sender, EventArgs e)
+    {
+        Stream stream;
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-		saveFileDialog.Filter = "TeX files|(*.tex)";
-		saveFileDialog.RestoreDirectory = true;
-		
-		if(saveFileDialog.ShowDialog() == DialogResult.OK)
-		{
-			if((stream = saveFileDialog.OpenFile()) != null)
-			{
-				// Insert code here that generates the string of LaTeX
+        saveFileDialog.Filter = "SVG files|*.svg|TeX files|(*.tex)";
+        saveFileDialog.RestoreDirectory = true;
+
+        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            if ((stream = saveFileDialog.OpenFile()) != null)
+            {
+                // Insert code here that generates the string of LaTeX
                 //   commands to draw the shapes
-                using(StreamWriter writer = new StreamWriter(stream))
+
+                if (true) //Hier moet komen: if .svg
                 {
+                    SVG graphics = new SVG();
+                    foreach (Shape shape in shapes)
+                        shape.Draw(graphics);
+                    graphics.Export();
+
+                    //System.IO.File.WriteAllLines(saveFileDialog.FileName, graphics.Document);
+
+                    using (StreamWriter writer = new StreamWriter(stream))
+                    {
                         // Write strings to the file here using:
                         //   writer.WriteLine("Hello World!");
-                }				
-			}
-		}
-	}
+                        foreach (string regel in graphics.Document)
+                        {
+                            writer.WriteLine(regel);
+                        }
+                    }
+                }
+
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter(stream))
+                    {
+                        // Write strings to the file here using:
+                        //   writer.WriteLine("Hello World!");
+                    }
+                }
+            }
+        }
+    }
 
     private void OnPaint(object sender, PaintEventArgs e)
-	{
-		// Draw all the shapes
-        if (true)//hier moet komen te staan: if (methode == formgraphics)
-        {
-            FormGraphics graphics = new FormGraphics(e.Graphics);
-            foreach (Shape shape in shapes)
-                shape.Draw(graphics);
-        }
-	}
+    {
+        // Draw all the shapes
+        FormGraphics graphics = new FormGraphics(e.Graphics);
+        foreach (Shape shape in shapes)
+            shape.Draw(graphics);
+    }
 }
